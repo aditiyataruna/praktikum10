@@ -32,6 +32,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('getEmployees', [EmployeeController::class, 'getData'])->name('employees.getData');
  // Meletakkan File pada Local Disk
 Route::get('/local-disk', function () {
     Storage::disk('local')->put('local-example.txt', 'This is local example content');
@@ -119,3 +120,9 @@ Route::get('/delete-public-file', function (Request $request) {
     Storage::disk('public')->delete('NW9UGWOAJe8QeuiZGqRGEitK8GTsSGY3QPbJD86c.pdf');
     return 'Deleted';
 });
+
+// Export Excel
+Route::get('exportExcel', [EmployeeController::class,
+'exportExcel'])->name('employees.exportExcel');
+
+Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');
